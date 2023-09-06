@@ -3,7 +3,7 @@ import React, {createContext, useState} from "react";
 
 const CustomContext = createContext();
 
-const Conxext = (props) => {
+const Context = (props) => {
 
     const [books, setBooks] = useState([
         {id: 1, title: "Name1"},
@@ -16,8 +16,19 @@ const Conxext = (props) => {
     }
 
     const removeBook = (id) => {
-        setBooks(book.filter(book => book.id !== id))
+        setBooks(id.filter(book => book.id !== id))
     }
+    const value = {
+        books,
+        addBook,
+        removeBook
+    }
+
+    return(
+        <CustomContext.Provider value={{value}}>
+            {props.children}
+        </CustomContext.Provider>
+    )
 }
 
-export default Conxext;
+export default Context;
