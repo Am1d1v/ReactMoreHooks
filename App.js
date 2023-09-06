@@ -1,11 +1,11 @@
 import './App.css';
-import Rand from './useEffectLayout';
+import {DualCounter, CountButtons} from './useCallback';
 
 
 function App() {
   return(
     <div className='App'>
-      <Rand />
+      <DualCounter />
     </div>
   )
 }
