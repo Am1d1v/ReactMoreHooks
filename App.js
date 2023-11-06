@@ -20,23 +20,25 @@ const reducer = (state, action) => {
       case "INCREMENT_G":
         return{
           ...state,
-          r: limitRbg(state.g + step)
+          g: limitRbg(state.g + step)
         };
       case "DECREMENT_G":
         return{
           ...state,
-          r: limitRbg(state.g - step)
+          g: limitRbg(state.g - step)
         };   
       case "INCREMENT_B":
         return{
           ...state,
-          r: limitRbg(state.b + step)
+          b: limitRbg(state.b + step)
         };
       case "DECREMENT_B":
         return{
           ...state,
-          r: limitRbg(state.b - step)
+          b: limitRbg(state.b - step)
         }; 
+      default:
+        return state  
 
     }
 }
@@ -44,7 +46,7 @@ const reducer = (state, action) => {
 
 function App() {
 
-  const [{r, g, b}, dispatch] =  useReducer(reducer, {r: 0, g: 102, b: 204});
+  const [{r, g, b}, dispatch] =  useReducer(reducer, {r: 0, g: 0, b: 0});
 
   return(
     <div className='App'>
@@ -52,19 +54,21 @@ function App() {
       <h1 style={{color: `rgb(${r}, ${g}, ${b})`}}>Color Title</h1>
       <div>
         <span> </span>
-        <button onClick={''}>+</button>
-        <button onClick={''}>-</button>
+        <button onClick={() => dispatch({type: "INCREMENT_R"})}>RED: +</button>
+        <button onClick={() => dispatch({type: "DECREMENT_R"})}>RED -</button>
       </div>
       <div>
         <span> </span>
-        <button onClick={''}>+</button>
-        <button onClick={''}>-</button>
+        <button onClick={() => dispatch({type: "INCREMENT_G"})}>GREEN: +</button>
+        <button onClick={() => dispatch({type: "DECREMENT_G"})}>GREEN: -</button>
       </div>
       <div>
         <span> </span>
-        <button onClick={''}>+</button>
-        <button onClick={''}>-</button>
+        <button onClick={() => dispatch({type: "INCREMENT_B"})}>BLUE: +</button>
+        <button onClick={() => dispatch({type: "DECREMENT_B"})}>BLUE: -</button>
       </div>
+      
+      {console.log({r, g, b})}
 
     </div>
   )
